@@ -5,7 +5,7 @@ import javax.validation.constraints.NotBlank;
 import java.util.UUID;
 
 @Entity
-@Table(name = "order")
+@Table(name = "orders")
 public class Order
 {
     @Id
@@ -27,7 +27,7 @@ public class Order
 
     public Order() {}
 
-    public Order(UUID order_ID, OrderStatus status, @NotBlank double totalCost, @NotBlank String address)
+    public Order(UUID order_ID, @NotBlank OrderStatus status, @NotBlank double totalCost, @NotBlank String address)
     {
         super();
         this.order_ID = order_ID;

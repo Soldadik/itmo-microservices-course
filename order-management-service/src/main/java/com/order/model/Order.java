@@ -2,18 +2,18 @@ package com.order.model;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
-import java.util.UUID;
 
 @Entity
 @Table(name = "orders")
 public class Order
 {
     @Id
-    @GeneratedValue
-    private UUID order_ID;
+    @Column(name = "order_id")
+    private long order_ID;
 
     @NotBlank
     @Column(name = "status")
+    @Enumerated(EnumType.STRING)
     private OrderStatus status;
 
     @NotBlank
@@ -27,7 +27,7 @@ public class Order
 
     public Order() {}
 
-    public Order(UUID order_ID, @NotBlank OrderStatus status, @NotBlank double totalCost, @NotBlank String address)
+    public Order(long order_ID, @NotBlank OrderStatus status, @NotBlank double totalCost, @NotBlank String address)
     {
         super();
         this.order_ID = order_ID;
@@ -36,12 +36,12 @@ public class Order
         this.address = address;
     }
 
-    public UUID getOrder_ID()
+    public long getOrder_ID()
     {
         return order_ID;
     }
 
-    public void setOrder_ID(UUID order_ID)
+    public void setOrder_ID(long order_ID)
     {
         this.order_ID = order_ID;
     }

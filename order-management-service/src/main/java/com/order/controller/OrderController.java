@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/api/orders")
+@RequestMapping("/api/orders/")
 public class OrderController
 {
     @Autowired
@@ -26,7 +26,7 @@ public class OrderController
 
     //Get order by ID
     @GetMapping("{order_ID}")
-    public ResponseEntity<Order> getOrderByID(@PathVariable(value = "order_id") UUID order_ID) throws ResourceNotFoundException
+    public ResponseEntity<Order> getOrderByID(@PathVariable("order_ID") long order_ID) throws ResourceNotFoundException
     {
         Order order = orderRepository.findById(order_ID).
                 orElseThrow(() -> new ResourceNotFoundException("Order not found on :: " + order_ID));
@@ -35,7 +35,7 @@ public class OrderController
 
     //Update order
     @PutMapping("{order_ID}")
-    public ResponseEntity<Order> updateOrder(@PathVariable(value = "order_id") UUID order_ID, @Valid @RequestBody Order orderDetails) throws ResourceNotFoundException
+    public ResponseEntity<Order> updateOrder(@PathVariable("order_ID") long order_ID, @Valid @RequestBody Order orderDetails) throws ResourceNotFoundException
     {
         Order order = orderRepository.findById(order_ID)
                 .orElseThrow(() -> new ResourceNotFoundException("Order not found on :: " + order_ID));

@@ -2,15 +2,14 @@ package com.catalog.model;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
-import java.util.UUID;
 
 @Entity
 @Table(name = "items")
 public class Item
 {
     @Id
-    @GeneratedValue
-    private UUID item_ID;
+    @Column(name = "item_id")
+    private long item_ID;
 
     @NotBlank
     @Column(name = "name")
@@ -24,7 +23,7 @@ public class Item
     @Column(name = "price")
     private double price;
 
-    public Item(UUID item_ID, @NotBlank String name, @NotBlank int amount, @NotBlank double price)
+    public Item(long item_ID, @NotBlank String name, @NotBlank int amount, @NotBlank double price)
     {
         this.item_ID = item_ID;
         this.name = name;
@@ -32,12 +31,12 @@ public class Item
         this.price = price;
     }
 
-    public UUID getItem_ID()
+    public long getItem_ID()
     {
         return item_ID;
     }
 
-    public void setItem_ID(UUID item_ID)
+    public void setItem_ID(long item_ID)
     {
         this.item_ID = item_ID;
     }

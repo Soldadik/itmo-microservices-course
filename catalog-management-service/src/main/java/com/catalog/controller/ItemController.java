@@ -6,12 +6,10 @@ import com.catalog.repository.ItemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import javax.validation.Valid;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/catalog")
@@ -29,7 +27,7 @@ public class ItemController
 
     //Get item by ID
     @GetMapping("{item_ID}")
-    public ResponseEntity<Item> getItemByID(@PathVariable(value = "item_id") UUID item_ID) throws ResourceNotFoundException
+    public ResponseEntity<Item> getItemByID(@PathVariable(value = "item_id") long item_ID) throws ResourceNotFoundException
     {
         Item item = itemRepository.findById(item_ID).
                 orElseThrow(() -> new ResourceNotFoundException("Item not found on :: " + item_ID));
@@ -38,7 +36,7 @@ public class ItemController
 
     //Update item
     @PutMapping("{item_ID}")
-    public ResponseEntity<Item> updateItem(@PathVariable(value = "item_id") UUID item_ID, @Valid @RequestBody Item ItemDetails) throws ResourceNotFoundException
+    public ResponseEntity<Item> updateItem(@PathVariable(value = "item_id") long item_ID, @Valid @RequestBody Item ItemDetails) throws ResourceNotFoundException
     {
         Item item = itemRepository.findById(item_ID)
                 .orElseThrow(() -> new ResourceNotFoundException("Item not found on :: " + item_ID));
@@ -58,7 +56,7 @@ public class ItemController
 
     //Delete item
     @DeleteMapping("{item_id}")
-    public Map<String, Boolean> deleteUser(@PathVariable(value = "item_id") UUID item_ID) throws Exception
+    public Map<String, Boolean> deleteUser(@PathVariable(value = "item_id") long item_ID) throws Exception
     {
         Item item = itemRepository.findById(item_ID)
                 .orElseThrow(() -> new ResourceNotFoundException("Item not found on :: " + item_ID));

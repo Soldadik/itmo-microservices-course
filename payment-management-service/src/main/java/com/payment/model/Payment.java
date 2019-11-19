@@ -3,15 +3,14 @@ package com.payment.model;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import java.util.Date;
-import java.util.UUID;
 
 @Entity
 @Table(name = "payments")
 public class Payment
 {
     @Id
-    @GeneratedValue
-    private UUID payment_ID;
+    @Column(name = "payment_id")
+    private long payment_ID;
 
     @NotBlank
     @Column(name = "order_id")
@@ -23,13 +22,14 @@ public class Payment
 
     @NotBlank
     @Column(name = "status")
-    private String status;
+    @Enumerated(EnumType.STRING)
+    private PaymentStatus status;
 
     @NotBlank
     @Column(name = "date")
     private Date date;
 
-    public Payment(UUID payment_ID, @NotBlank long order_ID, @NotBlank long payment_card_ID, @NotBlank String status, @NotBlank Date date)
+    public Payment(long payment_ID, @NotBlank long order_ID, @NotBlank long payment_card_ID, @NotBlank PaymentStatus status, @NotBlank Date date)
     {
         this.payment_ID = payment_ID;
         this.order_ID = order_ID;
@@ -38,12 +38,12 @@ public class Payment
         this.date = date;
     }
 
-    public UUID getPayment_ID()
+    public long getPayment_ID()
     {
         return payment_ID;
     }
 
-    public void setPayment_ID(UUID payment_ID)
+    public void setPayment_ID(long payment_ID)
     {
         this.payment_ID = payment_ID;
     }
@@ -68,12 +68,12 @@ public class Payment
         this.payment_card_ID = payment_card_ID;
     }
 
-    public String getStatus()
+    public PaymentStatus getStatus()
     {
         return status;
     }
 
-    public void setStatus(String status)
+    public void setStatus(PaymentStatus status)
     {
         this.status = status;
     }

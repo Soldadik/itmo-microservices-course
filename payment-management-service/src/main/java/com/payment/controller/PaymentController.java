@@ -7,10 +7,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
-import java.util.UUID;
 
+@RestController
+@RequestMapping("/api/payments")
 public class PaymentController
 {
     @Autowired
@@ -25,7 +28,7 @@ public class PaymentController
 
     //Get payment by ID
     @GetMapping("{payment_ID}")
-    public ResponseEntity<Payment> getPaymentByID(@PathVariable(value = "payment_id") UUID payment_ID) throws ResourceNotFoundException
+    public ResponseEntity<Payment> getPaymentByID(@PathVariable(value = "payment_id") long payment_ID) throws ResourceNotFoundException
     {
         Payment payment = paymentRepository.findById(payment_ID).
                 orElseThrow(() -> new ResourceNotFoundException("Payment not found on :: " + payment_ID));

@@ -28,7 +28,7 @@ public class PaymentController
 
     //Get payment by ID
     @GetMapping("{payment_ID}")
-    public ResponseEntity<Payment> getPaymentByID(@PathVariable(value = "payment_id") long payment_ID) throws ResourceNotFoundException
+    public ResponseEntity<Payment> getPaymentByID(@PathVariable("payment_ID") long payment_ID) throws ResourceNotFoundException
     {
         Payment payment = paymentRepository.findById(payment_ID).
                 orElseThrow(() -> new ResourceNotFoundException("Payment not found on :: " + payment_ID));

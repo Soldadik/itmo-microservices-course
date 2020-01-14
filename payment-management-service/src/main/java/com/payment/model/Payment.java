@@ -29,8 +29,11 @@ public class Payment
     @Column(name = "date")
     private Date date;
 
+    public Payment() {}
+
     public Payment(long payment_ID, @NotBlank long order_ID, @NotBlank long payment_card_ID, @NotBlank PaymentStatus status, @NotBlank Date date)
     {
+        super();
         this.payment_ID = payment_ID;
         this.order_ID = order_ID;
         this.payment_card_ID = payment_card_ID;

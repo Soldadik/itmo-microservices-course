@@ -23,8 +23,11 @@ public class Item
     @Column(name = "price")
     private double price;
 
+    public Item() {}
+
     public Item(long item_ID, @NotBlank String name, @NotBlank int amount, @NotBlank double price)
     {
+        super();
         this.item_ID = item_ID;
         this.name = name;
         this.amount = amount;

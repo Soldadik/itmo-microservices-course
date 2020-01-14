@@ -27,7 +27,7 @@ public class ItemController
 
     //Get item by ID
     @GetMapping("{item_ID}")
-    public ResponseEntity<Item> getItemByID(@PathVariable(value = "item_id") long item_ID) throws ResourceNotFoundException
+    public ResponseEntity<Item> getItemByID(@PathVariable("item_ID") long item_ID) throws ResourceNotFoundException
     {
         Item item = itemRepository.findById(item_ID).
                 orElseThrow(() -> new ResourceNotFoundException("Item not found on :: " + item_ID));
@@ -36,7 +36,7 @@ public class ItemController
 
     //Update item
     @PutMapping("{item_ID}")
-    public ResponseEntity<Item> updateItem(@PathVariable(value = "item_id") long item_ID, @Valid @RequestBody Item ItemDetails) throws ResourceNotFoundException
+    public ResponseEntity<Item> updateItem(@PathVariable("item_ID") long item_ID, @Valid @RequestBody Item ItemDetails) throws ResourceNotFoundException
     {
         Item item = itemRepository.findById(item_ID)
                 .orElseThrow(() -> new ResourceNotFoundException("Item not found on :: " + item_ID));
@@ -55,8 +55,8 @@ public class ItemController
     }
 
     //Delete item
-    @DeleteMapping("{item_id}")
-    public Map<String, Boolean> deleteUser(@PathVariable(value = "item_id") long item_ID) throws Exception
+    @DeleteMapping("{item_ID}")
+    public Map<String, Boolean> deleteUser(@PathVariable("item_ID") long item_ID) throws Exception
     {
         Item item = itemRepository.findById(item_ID)
                 .orElseThrow(() -> new ResourceNotFoundException("Item not found on :: " + item_ID));

@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
-import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/orders/")
@@ -39,6 +38,7 @@ public class OrderController
     {
         Order order = orderRepository.findById(order_ID)
                 .orElseThrow(() -> new ResourceNotFoundException("Order not found on :: " + order_ID));
+        order.setCart_ID(orderDetails.getCart_ID());
         order.setStatus(orderDetails.getStatus());
         order.setTotalCost(orderDetails.getTotalCost());
         order.setAddress(orderDetails.getAddress());

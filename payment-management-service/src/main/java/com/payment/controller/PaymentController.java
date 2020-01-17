@@ -35,6 +35,7 @@ public class PaymentController
         return ResponseEntity.ok().body(payment);
     }
 
-    //TODO pay()
+    //Pay
+    public void pay() { }
 
 }

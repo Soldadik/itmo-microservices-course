@@ -5,15 +5,12 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 @FeignClient(name="order-service")
-@RequestMapping("/api/orders/{order_ID}")
-@Repository
-@Component
 public interface OrderServiceProxy //extends JpaRepository<OrderResponse, Long>
 {
-    @GetMapping
-    OrderResponse getOrderByID(long order_id);
+    //@GetMapping("/api/orders/{order_ID}")
+    @RequestMapping(value = "/api/orders/{order_ID}", method = RequestMethod.GET)
+    OrderResponse getOrderByID(@PathVariable long order_id);
 }

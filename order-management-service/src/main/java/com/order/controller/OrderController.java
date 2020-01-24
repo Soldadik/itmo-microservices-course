@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Objects;
 
 @RestController
 @RequestMapping("/api/orders/")
@@ -24,7 +25,8 @@ public class OrderController
     }
 
     //Get order by ID
-    @GetMapping("{order_ID}")
+    //@GetMapping("{order_ID}")
+    @RequestMapping(value = "/api/orders/{order_ID}", method = RequestMethod.GET)
     public ResponseEntity<Order> getOrderByID(@PathVariable("order_ID") long order_ID) throws ResourceNotFoundException
     {
         Order order = orderRepository.findById(order_ID).
@@ -33,7 +35,8 @@ public class OrderController
     }
 
     //Update order
-    @PutMapping("{order_ID}")
+    //@PutMapping("{order_ID}")
+    @RequestMapping(value = "/api/orders/{order_ID}", method = RequestMethod.PUT)
     public ResponseEntity<Order> updateOrder(@PathVariable("order_ID") long order_ID, @Valid @RequestBody Order orderDetails) throws ResourceNotFoundException
     {
         Order order = orderRepository.findById(order_ID)
@@ -47,9 +50,10 @@ public class OrderController
     }
 
     //Add order
-    @PostMapping
+    /*@PostMapping
     public Order createOrder(@Valid @RequestBody Order order)
     {
+        Objects.requireNonNull(order);
         return orderRepository.save(order);
-    }
+    }*/
 }

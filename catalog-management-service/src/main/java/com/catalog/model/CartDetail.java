@@ -8,19 +8,19 @@ import javax.validation.constraints.NotBlank;
 public class CartDetail
 {
     @Id
-    @Column(name = "cart_detail_id")
+//    @Column(name = "cart_detail_id")
     private long cart_detail_id;
 
-    @ManyToOne
-    @JoinColumn(name = "cart_id", referencedColumnName = "cart_id")
+//    @ManyToOne
+//    @JoinColumn(name = "cart_id", referencedColumnName = "cart_id")
     private long cart_id;
 
-    @ManyToOne
-    @JoinColumn(name = "item_id", referencedColumnName = "item_id")
+//    @ManyToOne
+//    @JoinColumn(name = "item_id", referencedColumnName = "item_id")
     private long item_id;
 
-    @NotBlank
-    @Column(name = "amount")
+ //   @NotBlank
+ //   @Column(name = "amount")
     private double amount;
 
     public CartDetail() {}

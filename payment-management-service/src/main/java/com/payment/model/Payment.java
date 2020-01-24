@@ -3,6 +3,7 @@ package com.payment.model;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import java.util.Date;
+import org.springframework.beans.factory.annotation.Autowired;
 
 @Entity
 @Table(name = "payments")
@@ -26,7 +27,7 @@ public class Payment
     private PaymentStatus status;
 
     @NotBlank
-    @Column(name = "date")
+    @Column(name = "created_at")
     private Date date;
 
     public Payment() {}

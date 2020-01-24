@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/catalog/carts")
 public class CartDetailController
 {
-    @Autowired
-    private CartDetailRepository cartDetailRepository;
+//    @Autowired
+//    private CartDetailRepository cartDetailRepository;
 
     // /{cart_id}
     // @PostMapping
@@ -22,7 +22,7 @@ public class CartDetailController
     //    }
 
     //Add to cart
-    @PutMapping
+ /*   @PutMapping
     public CartDetail addToCart()
     {
 
@@ -34,5 +34,5 @@ public class CartDetailController
 
     }
     // /{cart_id}
-
+*/
 }

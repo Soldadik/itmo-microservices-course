@@ -1,38 +1,31 @@
 package com.payment.api;
 
+import com.payment.exception.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Lazy;
-import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.client.RestTemplate;
 
-import javax.transaction.Transactional;
-
+@RefreshScope
 @RestController
-@RequestMapping(value="/api/p/orders")
-@Service
-@Lazy
-//@ComponentScan("com.payment.api.OrderServiceProxy")
-@Transactional
-public class OrderServiceController implements OrderServiceProxy
+@RequestMapping(value = "/api")
+public class OrderServiceController
 {
-
-    private RestTemplate restTemplate;
-
-
-    private OrderServiceProxy orderServiceProxy1;
-
     @Autowired
-    @GetMapping("{order_ID}")
-    public OrderResponse getOrderByID(@PathVariable("order_ID") long order_id)
+    private OrderServiceProxy orderServiceProxy;
+
+    public OrderServiceController(OrderServiceProxy orderServiceProxy)
     {
-        OrderResponse response = orderServiceProxy1.getOrderByID(order_id);
-        return response;
+        this.orderServiceProxy = orderServiceProxy;
+    }
+
+    @RequestMapping(value = "/orders/{order_ID}", method = RequestMethod.GET)
+    public ResponseEntity<OrderResponse> getOrderByID(@PathVariable("order_ID") long order_id) throws ResourceNotFoundException
+    {
+        OrderResponse response = orderServiceProxy.getOrderByID(order_id);
+        return ResponseEntity.ok(response);
     }
 }

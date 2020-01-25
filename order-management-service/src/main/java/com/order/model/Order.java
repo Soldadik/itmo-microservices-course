@@ -1,7 +1,6 @@
 package com.order.model;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
 
 @Entity
 @Table(name = "orders")
@@ -11,26 +10,22 @@ public class Order
     @Column(name = "order_id")
     private long order_ID;
 
-    @NotBlank
     @Column(name = "cart_id")
     private long cart_ID;
 
-    @NotBlank
     @Column(name = "status")
     @Enumerated(EnumType.STRING)
     private OrderStatus status;
 
-    @NotBlank
     @Column(name = "total_cost")
     private double totalCost;
 
-    @NotBlank
     @Column(name = "address")
     private String address;
 
     public Order() {}
 
-    public Order(long order_ID, @NotBlank long cart_ID, @NotBlank OrderStatus status, @NotBlank double totalCost, @NotBlank String address)
+    public Order(long order_ID, long cart_ID, OrderStatus status, double totalCost, String address)
     {
         super();
         this.order_ID = order_ID;

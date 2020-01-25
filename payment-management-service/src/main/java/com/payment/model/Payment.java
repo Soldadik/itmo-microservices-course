@@ -1,9 +1,7 @@
 package com.payment.model;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
 import java.util.Date;
-import org.springframework.beans.factory.annotation.Autowired;
 
 @Entity
 @Table(name = "payments")
@@ -13,26 +11,22 @@ public class Payment
     @Column(name = "payment_id")
     private long payment_ID;
 
-    @NotBlank
     @Column(name = "order_id")
     private long order_ID;
 
-    @NotBlank
     @Column(name = "payment_card_ID")
     private long payment_card_ID;
 
-    @NotBlank
     @Column(name = "status")
     @Enumerated(EnumType.STRING)
     private PaymentStatus status;
 
-    @NotBlank
     @Column(name = "created_at")
     private Date date;
 
     public Payment() {}
 
-    public Payment(long payment_ID, @NotBlank long order_ID, @NotBlank long payment_card_ID, @NotBlank PaymentStatus status, @NotBlank Date date)
+    public Payment(long payment_ID, long order_ID, long payment_card_ID, PaymentStatus status, Date date)
     {
         super();
         this.payment_ID = payment_ID;

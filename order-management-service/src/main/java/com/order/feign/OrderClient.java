@@ -9,5 +9,5 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public interface OrderClient
 {
     @RequestMapping("/catalog/api/carts/{cart_id}")
-    public Order getOrderByID(@PathVariable(value="cart_id") long cart_id);
+    public Order getCartByID(@PathVariable(value="cart_id") long cart_id);
 }

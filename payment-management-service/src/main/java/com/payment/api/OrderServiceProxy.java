@@ -1,19 +1,13 @@
 package com.payment.api;
 
 import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Repository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 @FeignClient(name="order-service")
-@RequestMapping("/api/orders/{order_ID}")
-@Repository
-@Component
-public interface OrderServiceProxy //extends JpaRepository<OrderResponse, Long>
+public interface OrderServiceProxy
 {
-    @GetMapping
-    OrderResponse getOrderByID(long order_id);
+    @RequestMapping(value = "/api/orders/{order_ID}", method = RequestMethod.GET)
+    OrderResponse getOrderByID(@PathVariable(value = "order_ID") long order_id);
 }

@@ -5,17 +5,28 @@ import com.catalog.model.Cart;
 import com.catalog.model.Item;
 import com.catalog.repository.CartRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
+@RefreshScope
 @RestController
 @RequestMapping("/api/catalog/carts")
 public class CartController
 {
     @Autowired
     private CartRepository cartRepository;
+
+    //Get by ID
+    @GetMapping("{cart_ID}")
+    public ResponseEntity<Cart> getCartByID(@PathVariable("cart_ID") long cart_ID) throws ResourceNotFoundException
+    {
+        Cart cart = cartRepository.findById(cart_ID).
+                orElseThrow(() -> new ResourceNotFoundException("Cart not found on :: " + cart_ID));
+        return ResponseEntity.ok(cart);
+    }
 
     //Update cart
     @PutMapping("{cart_ID}")

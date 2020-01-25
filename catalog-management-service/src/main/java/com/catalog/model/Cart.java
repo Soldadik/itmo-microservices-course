@@ -1,6 +1,7 @@
 package com.catalog.model;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "carts")
@@ -27,4 +28,5 @@ public class Cart
     {
         this.cart_ID = cart_ID;
     }
+
 }

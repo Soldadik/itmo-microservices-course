@@ -1,28 +1,20 @@
-package com.catalog.model;
+package com.order.api;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 
 @Entity
-@Table(name = "cart_detail")
-public class CartDetail
+public class CatalogResponse
 {
-    //@Id
-    @Column(name = "cart_detail_id")
     private long cart_detail_id;
-
     @Id
-    @Column(name = "cart_id")
     private long cart_id;
-
-    @Column(name = "item_id")
     private long item_id;
-
-    @Column(name = "amount")
     private double amount;
 
-    public CartDetail() {}
+    public CatalogResponse() {}
 
-    public CartDetail(long cart_detail_id, long cart_id, long item_id, double amount)
+    public CatalogResponse(long cart_detail_id, long cart_id, long item_id, double amount)
     {
         super();
         this.cart_detail_id = cart_detail_id;
@@ -71,4 +63,3 @@ public class CartDetail
         this.amount = amount;
     }
 }
-

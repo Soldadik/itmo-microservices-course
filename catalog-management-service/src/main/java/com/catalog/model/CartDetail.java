@@ -6,7 +6,6 @@ import javax.persistence.*;
 @Table(name = "cart_detail")
 public class CartDetail
 {
-    //@Id
     @Column(name = "cart_detail_id")
     private long cart_detail_id;
 
@@ -18,11 +17,11 @@ public class CartDetail
     private long item_id;
 
     @Column(name = "amount")
-    private double amount;
+    private int amount;
 
     public CartDetail() {}
 
-    public CartDetail(long cart_detail_id, long cart_id, long item_id, double amount)
+    public CartDetail(long cart_detail_id, long cart_id, long item_id, int amount)
     {
         super();
         this.cart_detail_id = cart_detail_id;
@@ -66,7 +65,7 @@ public class CartDetail
         return amount;
     }
 
-    public void setAmount(double amount)
+    public void setAmount(int amount)
     {
         this.amount = amount;
     }

@@ -5,15 +5,14 @@ import com.payment.model.Payment;
 import com.payment.repository.PaymentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
+import java.util.Objects;
 
 @RestController
-@RequestMapping("/api/payments")
+@RequestMapping("/api/payments/")
 public class PaymentController
 {
     @Autowired
@@ -33,6 +32,13 @@ public class PaymentController
         Payment payment = paymentRepository.findById(payment_ID).
                 orElseThrow(() -> new ResourceNotFoundException("Payment not found on :: " + payment_ID));
         return ResponseEntity.ok().body(payment);
+    }
+
+    //Add payment
+    @PostMapping
+    public Payment createOrder(@RequestBody Payment payment)
+    {
+        return paymentRepository.save(payment);
     }
 
     //Pay

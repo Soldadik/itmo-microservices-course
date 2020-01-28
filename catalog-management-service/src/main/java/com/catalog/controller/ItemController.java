@@ -14,7 +14,7 @@ import java.util.Map;
 
 @RefreshScope
 @RestController
-@RequestMapping("/api/catalog")
+@RequestMapping("/api/catalog/items/")
 public class ItemController
 {
     @Autowired

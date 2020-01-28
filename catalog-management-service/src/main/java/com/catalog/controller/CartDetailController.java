@@ -13,40 +13,25 @@ import java.util.List;
 
 @RefreshScope
 @RestController
-@RequestMapping("/api/catalog/carts")
+@RequestMapping("/api/catalog/carts/")
 public class CartDetailController
 {
     @Autowired
     private CartDetailRepository cartDetailRepository;
 
-    //Get by ID
-    @GetMapping("/detail/{cart_ID}")
+    //Get cart by ID
+    @GetMapping("{cart_ID}")
     public ResponseEntity<List<CartDetail>> getCartDetailByID(@PathVariable("cart_ID") long cart_ID) throws ResourceNotFoundException
     {
-        List<CartDetail> cart = cartDetailRepository.findAllById(Collections.singleton(cart_ID));
-              //  .orElseThrow(() -> new ResourceNotFoundException("Cart not found on :: " + cart_ID));
+        List<CartDetail> cart = cartDetailRepository.findAllById(Collections.singletonList(cart_ID));
         return ResponseEntity.ok(cart);
     }
 
-    // /{cart_id}
-    // @PostMapping
-    //    public Item createItem(@Valid @RequestBody Item item)
-    //    {
-    //        return itemRepository.save(item);
-    //    }
-
     //Add to cart
-    /*@PostMapping
-    public CartDetail addToCart()
+    @PostMapping
+    public CartDetail addToCart(@RequestBody CartDetail cartDetail)
     {
-
+        return cartDetailRepository.save(cartDetail);
     }
 
-    //Remove from cart
-    public CartDetail removeFromCart()
-    {
-
-    }
-    */
-    // /{cart_id}
 }

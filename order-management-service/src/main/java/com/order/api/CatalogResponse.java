@@ -6,15 +6,15 @@ import javax.persistence.Id;
 @Entity
 public class CatalogResponse
 {
-    private long cart_detail_id;
     @Id
+    private long cart_detail_id;
     private long cart_id;
     private long item_id;
-    private double amount;
+    private int amount;
 
     public CatalogResponse() {}
 
-    public CatalogResponse(long cart_detail_id, long cart_id, long item_id, double amount)
+    public CatalogResponse(long cart_detail_id, long cart_id, long item_id, int amount)
     {
         super();
         this.cart_detail_id = cart_detail_id;
@@ -58,7 +58,7 @@ public class CatalogResponse
         return amount;
     }
 
-    public void setAmount(double amount)
+    public void setAmount(int amount)
     {
         this.amount = amount;
     }

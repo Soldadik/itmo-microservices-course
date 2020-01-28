@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RefreshScope
 @RestController
-@RequestMapping(value = "/api")
+@RequestMapping(value = "/api/orders/")
 public class OrderServiceController
 {
     @Autowired
@@ -22,7 +22,7 @@ public class OrderServiceController
         this.orderServiceProxy = orderServiceProxy;
     }
 
-    @RequestMapping(value = "/orders/{order_ID}", method = RequestMethod.GET)
+    @RequestMapping(value = "{order_ID}", method = RequestMethod.GET)
     public ResponseEntity<OrderResponse> getOrderByID(@PathVariable("order_ID") long order_id) throws ResourceNotFoundException
     {
         OrderResponse response = orderServiceProxy.getOrderByID(order_id);

@@ -27,8 +27,7 @@ public class OrderController
     }
 
     //Get order by ID
-    //@GetMapping("{order_ID}")
-    @RequestMapping(value = "/api/orders/{order_ID}", method = RequestMethod.GET)
+    @RequestMapping(value = "{order_ID}", method = RequestMethod.GET)
     public ResponseEntity<Order> getOrderByID(@PathVariable("order_ID") long order_ID) throws ResourceNotFoundException
     {
         Order order = orderRepository.findById(order_ID).
@@ -37,7 +36,6 @@ public class OrderController
     }
 
     //Update order
-    //@PutMapping("{order_ID}")
     @RequestMapping(value = "/api/orders/{order_ID}", method = RequestMethod.PUT)
     public ResponseEntity<Order> updateOrder(@PathVariable("order_ID") long order_ID, @Valid @RequestBody Order orderDetails) throws ResourceNotFoundException
     {
@@ -52,10 +50,10 @@ public class OrderController
     }
 
     //Add order
-    /*@PostMapping
+    @PostMapping
     public Order createOrder(@Valid @RequestBody Order order)
     {
         Objects.requireNonNull(order);
         return orderRepository.save(order);
-    }*/
+    }
 }

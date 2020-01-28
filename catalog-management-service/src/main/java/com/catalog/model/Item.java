@@ -1,7 +1,6 @@
 package com.catalog.model;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
 
 @Entity
 @Table(name = "items")
@@ -11,21 +10,18 @@ public class Item
     @Column(name = "item_id")
     private long item_ID;
 
-    @NotBlank
     @Column(name = "name")
     private String name;
 
-    @NotBlank
     @Column(name = "amount")
     private int amount;
 
-    @NotBlank
     @Column(name = "price")
     private double price;
 
     public Item() {}
 
-    public Item(long item_ID, @NotBlank String name, @NotBlank int amount, @NotBlank double price)
+    public Item(long item_ID, String name, int amount, double price)
     {
         super();
         this.item_ID = item_ID;

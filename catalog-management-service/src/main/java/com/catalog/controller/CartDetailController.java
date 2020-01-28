@@ -1,18 +1,32 @@
 package com.catalog.controller;
 
+import com.catalog.exception.ResourceNotFoundException;
 import com.catalog.model.CartDetail;
 import com.catalog.repository.CartDetailRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.Collections;
+import java.util.List;
+
+@RefreshScope
 @RestController
 @RequestMapping("/api/catalog/carts")
 public class CartDetailController
 {
-//    @Autowired
-//    private CartDetailRepository cartDetailRepository;
+    @Autowired
+    private CartDetailRepository cartDetailRepository;
+
+    //Get by ID
+    @GetMapping("/detail/{cart_ID}")
+    public ResponseEntity<List<CartDetail>> getCartDetailByID(@PathVariable("cart_ID") long cart_ID) throws ResourceNotFoundException
+    {
+        List<CartDetail> cart = cartDetailRepository.findAllById(Collections.singleton(cart_ID));
+              //  .orElseThrow(() -> new ResourceNotFoundException("Cart not found on :: " + cart_ID));
+        return ResponseEntity.ok(cart);
+    }
 
     // /{cart_id}
     // @PostMapping
@@ -22,7 +36,7 @@ public class CartDetailController
     //    }
 
     //Add to cart
- /*   @PutMapping
+    /*@PostMapping
     public CartDetail addToCart()
     {
 
@@ -33,6 +47,6 @@ public class CartDetailController
     {
 
     }
+    */
     // /{cart_id}
-*/
 }

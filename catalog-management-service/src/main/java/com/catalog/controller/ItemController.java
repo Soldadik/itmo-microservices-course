@@ -4,6 +4,7 @@ import com.catalog.exception.ResourceNotFoundException;
 import com.catalog.model.Item;
 import com.catalog.repository.ItemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
@@ -11,6 +12,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+@RefreshScope
 @RestController
 @RequestMapping("/api/catalog")
 public class ItemController

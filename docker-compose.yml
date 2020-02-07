@@ -1,0 +1,17 @@
+version: "3"
+services:
+    eureka:
+        #image: eureka-service
+        build: ./eureka-service
+        ports:
+            - "8761:8761"
+    db:
+        image: mysql:5.7
+        restart: always
+        environment:
+            MYSQL_USER: 'root'
+            MYSQL_PASSWORD: 'password'
+            MYSQL_ROOT_PASSWORD: 'password'
+        expose:
+            - '3306'
+    
